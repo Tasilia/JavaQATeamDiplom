@@ -1,6 +1,6 @@
 package ru.netology;
 
-import java.util.HashMap;
+import  java.util.HashMap;
 import java.util.Map;
 
 public class Player {
@@ -22,7 +22,9 @@ public class Player {
     /** добавление игры игроку
     если игра уже была, никаких изменений происходить не должно */
     public void installGame(Game game) {
-        playedTime.put(game, 0);
+        if (!playedTime.containsKey(game)) {
+            playedTime.put(game, 0);
+        }
     }
 
     /** игрок играет в игру game на протяжении hours часов
@@ -31,11 +33,12 @@ public class Player {
     возвращает суммарное количество часов, проигранное в эту игру.
     если игра не была установлена, то надо выкидывать RuntimeException */
     public int play(Game game, int hours) {
-        game.getStore().addPlayTime(name, hours);
         if (playedTime.containsKey(game)) {
-            playedTime.put(game, playedTime.get(game));
+            game.getStore().addPlayTime(name, hours);
+            int sum = playedTime.get(game) + hours;
+            playedTime.put(game, sum);
         } else {
-            playedTime.put(game, hours);
+            throw new RuntimeException("Игра не установлена.");
         }
         return playedTime.get(game);
     }
@@ -47,8 +50,6 @@ public class Player {
         for (Game game : playedTime.keySet()) {
             if (game.getGenre().equals(genre)) {
                 sum += playedTime.get(game);
-            } else {
-                sum = 0;
             }
         }
         return sum;
@@ -57,6 +58,21 @@ public class Player {
     /** Метод принимает жанр и возвращает игру этого жанра, в которую играли больше всего
      Если в игры этого жанра не играли, возвращается null */
     public Game mostPlayerByGenre(String genre) {
-        return null;
+        int max = 0;
+        GameStore store = new GameStore();
+        Game gameMax = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        for (Game game : playedTime.keySet()) {
+            if (game.getGenre().equals(genre)) {
+                if (playedTime.get(game)>max) {
+                    max = playedTime.get(game);
+                    gameMax = game;
+                }
+            }
+        }
+        if (max == 0) {
+            return null;
+        } else {
+            return gameMax;
+        }
     }
 }
