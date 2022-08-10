@@ -1,6 +1,7 @@
 package ru.netology;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 public class GameStoreTest {
@@ -35,7 +36,7 @@ public class GameStoreTest {
     }
 
     @Test
-    public void shouldAddPlayerTimeFirstTime(){
+    public void shouldAddPlayerTimeFirstTime() {
         GameStore store = new GameStore();
         store.addPlayTime("Player1", 1);
         int expected = 1;
@@ -44,7 +45,7 @@ public class GameStoreTest {
     }
 
     @Test
-    public void shouldAddPlayerTime(){
+    public void shouldAddPlayerTime() {
         GameStore store = new GameStore();
         store.addPlayTime("Player1", 1);
         store.addPlayTime("Player1", 2);
@@ -54,15 +55,16 @@ public class GameStoreTest {
     }
 
     @Test
-    public void shouldGetMostPlayerIfOneHour(){
+    public void shouldGetMostPlayerIfOneHour() {
         GameStore store = new GameStore();
         store.addPlayTime("Player1", 1);
         String expected = "Player1";
         String actual = store.getMostPlayer();
         assertEquals(expected, actual);
     }
+
     @Test
-    public void shouldGetMostPlayer(){
+    public void shouldGetMostPlayer() {
         GameStore store = new GameStore();
         store.addPlayTime("Player1", 1);
         store.addPlayTime("Player2", 3);
@@ -73,7 +75,7 @@ public class GameStoreTest {
     }
 
     @Test
-    public void shouldGetMostPlayerWithoutPlayers(){
+    public void shouldGetMostPlayerWithoutPlayers() {
         GameStore store = new GameStore();
         String expected = null;
         String actual = store.getMostPlayer();
@@ -81,7 +83,7 @@ public class GameStoreTest {
     }
 
     @Test
-    public void shouldGetSumPlayedTime(){
+    public void shouldGetSumPlayedTime() {
         GameStore store = new GameStore();
         store.addPlayTime("Player1", 1);
         store.addPlayTime("Player2", 1);
@@ -89,16 +91,18 @@ public class GameStoreTest {
         int actual = store.getSumPlayedTime();
         assertEquals(expected, actual);
     }
+
     @Test
-    public void shouldGetSumPlayedTimeIfOnePlayer(){
+    public void shouldGetSumPlayedTimeIfOnePlayer() {
         GameStore store = new GameStore();
         store.addPlayTime("Player1", 1);
         int expected = 1;
         int actual = store.getSumPlayedTime();
         assertEquals(expected, actual);
     }
+
     @Test
-    public void shouldGetSumPlayedTimeWithoutPlayers(){
+    public void shouldGetSumPlayedTimeWithoutPlayers() {
         GameStore store = new GameStore();
         int expected = 0;
         int actual = store.getSumPlayedTime();
