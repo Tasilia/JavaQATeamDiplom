@@ -39,8 +39,8 @@ public class GameStoreTest {
         GameStore store = new GameStore();
         store.addPlayTime("Player1", 1);
         int expected = 1;
-        //int actual = store.playedTime.get("Player1");
-       // assertEquals(expected, actual);
+        int actual = store.playedTime.get("Player1");
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -49,8 +49,8 @@ public class GameStoreTest {
         store.addPlayTime("Player1", 1);
         store.addPlayTime("Player1", 2);
         int expected = 3;
-        //int actual = store.playedTime.get("Player1");
-        //assertEquals(expected, actual);
+        int actual = store.playedTime.get("Player1");
+        assertEquals(expected, actual);
     }
 
     @Test
