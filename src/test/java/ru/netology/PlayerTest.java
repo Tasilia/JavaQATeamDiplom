@@ -33,9 +33,9 @@ public class PlayerTest {
         player.play(game, 5);
         player.play(game2, 3);
 
-        String expected = String.valueOf(player.mostPlayerByGenre("Аркады"));
-        String actual = game.getTitle();
-
+        ru.netology.Game expected = game;
+        ru.netology.Game actual = player.mostPlayerByGenre("Аркады");
+        
         assertEquals(expected, actual);
     }
 
